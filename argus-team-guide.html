@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ARGUS — دليل الفريق</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f6f8; --paper:#ffffff; --ink:#13202b; --muted:#566574; --line:#d9e1e7; --soft:#eaf0f4;
+  --link:#0b5f8a; --warn-bg:#fff3d6; --warn-ink:#5d3b00; --ok-bg:#e3f3e9; --ok-ink:#14532d;
+  --m1:#0f766e; --m2:#b4391f; --m3:#6d4bb5; --m4:#9a5600; --m5:#1f5fbf; --m6:#3f7d20; --chip-ink:#ffffff;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d151c; --paper:#14202a; --ink:#e6edf2; --muted:#9fb0bd; --line:#27384a; --soft:#1a2a37;
+    --link:#7cc4ea; --warn-bg:#3a2d10; --warn-ink:#f4d58d; --ok-bg:#12301f; --ok-ink:#a7e3bd;
+    --m1:#3cc2b3; --m2:#ff8a70; --m3:#b79cf5; --m4:#f0a44a; --m5:#7fb0ff; --m6:#8fd36a; --chip-ink:#0d151c;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d151c; --paper:#14202a; --ink:#e6edf2; --muted:#9fb0bd; --line:#27384a; --soft:#1a2a37;
+  --link:#7cc4ea; --warn-bg:#3a2d10; --warn-ink:#f4d58d; --ok-bg:#12301f; --ok-ink:#a7e3bd;
+  --m1:#3cc2b3; --m2:#ff8a70; --m3:#b79cf5; --m4:#f0a44a; --m5:#7fb0ff; --m6:#8fd36a; --chip-ink:#0d151c;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:400 16.5px/1.95 "IBM Plex Sans Arabic","Segoe UI",Tahoma,"Noto Naskh Arabic",system-ui,sans-serif;
+  -webkit-text-size-adjust:100%}
+a{color:var(--link)}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--link);outline-offset:2px}
+code,.en{direction:ltr;unicode-bidi:isolate}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;background:var(--soft);padding:1px 6px;border-radius:4px}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px}
+
+/* owner chips: one fixed colour per person across the whole page */
+.own{display:inline-grid;place-items:center;min-width:1.75em;height:1.75em;border-radius:50%;color:var(--chip-ink);font-size:.82em;font-weight:700;line-height:1;vertical-align:middle}
+.o1{background:var(--m1)}.o2{background:var(--m2)}.o3{background:var(--m3)}.o4{background:var(--m4)}.o5{background:var(--m5)}.o6{background:var(--m6)}
+.owners{display:inline-flex;gap:4px}
+
+/* hero */
+.hero{--m1:#3cc2b3;--m2:#ff8a70;--m3:#b79cf5;--m4:#f0a44a;--m5:#7fb0ff;--m6:#8fd36a;--chip-ink:#0d151c;
+  background:#0f1c27;color:#eaf1f6;padding:44px 0 34px;margin-top:calc(-1 * env(safe-area-inset-top,0px));
+  padding-top:calc(44px + env(safe-area-inset-top,0px))}
+.hero h1{margin:0;font-size:clamp(3rem,11vw,5.2rem);line-height:1.05;font-weight:700;direction:ltr;text-align:right}
+.hero .full{margin:6px 0 0;color:#9fb5c6;font-size:1rem;direction:ltr;text-align:right}
+.hero .lead{margin:22px 0 4px;font-size:1.25rem;line-height:1.8;font-weight:500}
+.hero .sub{margin:0;color:#b9cad6}
+.roles{display:flex;flex-wrap:wrap;gap:8px 10px;list-style:none;padding:0;margin:22px 0 10px}
+.roles a{display:inline-flex;align-items:center;gap:8px;padding:5px 12px 5px 14px;border:1px solid #33495b;border-radius:999px;color:#eaf1f6;text-decoration:none;font-size:.9rem;line-height:1.7}
+.roles a:hover{background:#18303f}
+.hero .hint{margin:8px 0 0;font-size:.88rem;color:#93a9b9}
+
+/* toc */
+.toc{display:flex;flex-wrap:wrap;gap:4px 18px;padding:18px 0 6px;font-size:.95rem}
+.toc a{text-decoration:none;border-bottom:1px solid var(--line);color:var(--ink)}
+.toc a:hover{border-color:var(--link);color:var(--link)}
+
+/* sections */
+section{padding:34px 0 8px;border-top:1px solid var(--line);margin-top:26px}
+.toc + section{border-top:0;margin-top:0}
+h2{margin:0 0 10px;font-size:1.6rem;line-height:1.5;font-weight:700}
+h3{margin:26px 0 6px;font-size:1.15rem;font-weight:700}
+p{margin:8px 0}
+ul.plain{padding-inline-start:1.3em;margin:8px 0}
+ul.plain li{margin:4px 0}
+
+.note,.warn,.ok{border-inline-start:5px solid var(--link);background:var(--soft);padding:10px 16px;border-radius:4px;margin:16px 0}
+.warn{border-color:#d28a00;background:var(--warn-bg);color:var(--warn-ink)}
+.ok{border-color:#2a8a55;background:var(--ok-bg);color:var(--ok-ink)}
+.note p:first-child,.warn p:first-child,.ok p:first-child{margin-top:0}
+.note p:last-child,.warn p:last-child,.ok p:last-child{margin-bottom:0}
+
+/* tables */
+.scroll{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:6px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.95rem;line-height:1.75}
+th,td{padding:9px 12px;text-align:start;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:var(--soft);font-weight:700}
+tr:last-child td{border-bottom:0}
+tr.grp th{background:var(--paper);font-size:1rem;padding-top:16px;border-bottom:2px solid var(--line)}
+
+/* flow */
+ol.flow{list-style:none;margin:18px 0;padding:0;border-inline-start:2px solid var(--line);margin-inline-start:7px}
+ol.flow li{position:relative;padding:2px 24px 16px 0;padding-inline:24px 0}
+ol.flow li::before{content:"";position:absolute;inset-inline-start:-8px;top:10px;width:14px;height:14px;border-radius:50%;background:var(--paper);border:3px solid var(--link)}
+ol.flow .st{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+ol.flow p{margin:2px 0 0;color:var(--muted);font-size:.96rem;line-height:1.8}
+
+/* scenarios */
+.scn{border:1px solid var(--line);background:var(--paper);border-radius:6px;padding:4px 16px 10px;margin:12px 0}
+.scn h3{margin-top:10px}
+.tag{display:inline-block;font-size:.8rem;padding:0 8px;border-radius:4px;background:var(--soft);color:var(--muted);margin-inline-end:6px}
+
+/* member plans */
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0 6px}
+button.btn{font:inherit;font-size:.92rem;padding:6px 14px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);cursor:pointer}
+button.btn:hover{border-color:var(--link)}
+details.m{background:var(--paper);border:1px solid var(--line);border-radius:6px;margin:12px 0;border-inline-start-width:6px}
+details.m.c1{border-inline-start-color:var(--m1)}details.m.c2{border-inline-start-color:var(--m2)}details.m.c3{border-inline-start-color:var(--m3)}
+details.m.c4{border-inline-start-color:var(--m4)}details.m.c5{border-inline-start-color:var(--m5)}details.m.c6{border-inline-start-color:var(--m6)}
+details.m summary{cursor:pointer;padding:12px 16px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;font-weight:700;list-style:none}
+details.m summary::-webkit-details-marker{display:none}
+details.m summary::after{content:"+";margin-inline-start:auto;font-size:1.4rem;line-height:1;color:var(--muted)}
+details.m[open] summary::after{content:"−"}
+details.m summary small{font-weight:400;color:var(--muted);flex-basis:100%;font-size:.9rem}
+details.m .body{padding:0 16px 14px}
+.meta{margin:0 0 6px;padding:10px 14px;background:var(--soft);border-radius:4px;font-size:.93rem;line-height:1.85}
+.meta b{font-weight:700}
+.wk{display:grid;grid-template-columns:1fr;gap:2px 20px;padding:14px 0 6px;border-top:1px solid var(--line)}
+@media (min-width:700px){.wk{grid-template-columns:130px 1fr}}
+.wk h4{margin:0;font-size:1rem;line-height:1.6}
+.wk h4 small{display:block;font-weight:400;color:var(--muted);font-size:.86rem}
+.steps{list-style:none;padding:0;margin:0}
+.steps li{display:grid;grid-template-columns:2em 1fr;gap:4px;margin:0 0 8px}
+.steps .k{text-align:center}
+.star{display:inline-block;font-size:.78rem;background:var(--warn-bg);color:var(--warn-ink);padding:0 8px;border-radius:4px;margin-inline-start:6px;font-weight:500}
+
+ol.prio{padding-inline-start:1.6em;margin:10px 0}
+ol.prio li{margin:6px 0}
+.legend{display:grid;gap:6px;margin:6px 0}
+footer{padding:34px 0 40px;color:var(--muted);font-size:.92rem;border-top:1px solid var(--line);margin-top:34px}
+
+@media print{
+  body{background:#fff;color:#000}
+  .hero{background:#fff;color:#000;padding-top:10px}
+  .hero .full,.hero .sub,.hero .hint{color:#333}
+  .roles a{color:#000;border-color:#999}
+  .bar,.toc{display:none}
+  details.m{break-inside:avoid-page}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>ARGUS</h1>
+    <p class="full">Autonomous Red/Blue Guardian &amp; Unified Security</p>
+    <p class="lead">منصة SOC مصغّرة بتكتشف الهجوم، وتحقق فيه بمساعدة AI محلي، وتسيب قرار التصرف للإنسان.</p>
+    <p class="sub">دليل الفريق: الفكرة، الأدوات، وخطة كل شخص من الأسبوع 1 لحد الأسبوع 7.</p>
+    <ul class="roles">
+      <li><a href="#m1"><span class="own o1">1</span> Wazuh والقواعد</a></li>
+      <li><a href="#m2"><span class="own o2">2</span> الهجمات والشبكة</a></li>
+      <li><a href="#m3"><span class="own o3">3</span> الربط والخطورة</a></li>
+      <li><a href="#m4"><span class="own o4">4</span> الـ AI و MITRE</a></li>
+      <li><a href="#m5"><span class="own o5">5</span> الـ Dashboard</a></li>
+      <li><a href="#m6"><span class="own o6">6</span> الـ IR والتوثيق</a></li>
+    </ul>
+    <p class="hint">لون كل شخص ثابت في الصفحة كلها. أي دايرة ملونة جنب خطوة أو deliverable يبقى ده صاحبها.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+<nav class="toc" aria-label="محتويات الصفحة">
+  <a href="#idea">الفكرة</a>
+  <a href="#flow">رحلة الحادثة</a>
+  <a href="#tools">الأدوات</a>
+  <a href="#scenarios">السيناريوهات</a>
+  <a href="#team">الفريق</a>
+  <a href="#timeline">الجدول الزمني</a>
+  <a href="#contracts">الاتفاقات بين الأجزاء</a>
+  <a href="#plans">خطة كل شخص</a>
+  <a href="#booklet">مطابقة كتيب المبادرة</a>
+  <a href="#rules">قواعد الشغل</a>
+  <a href="#cut">لو الوقت ضاق</a>
+  <a href="#demo">العرض النهائي</a>
+</nav>
+
+<section id="idea">
+  <h2>الفكرة في جملتين</h2>
+  <p>هنبني منصة SOC مصغّرة بتحاكي شغل الـ SOC Analyst الحقيقي. بتستقبل تنبيهات أمنية من مصادر مختلفة، وتربطها ببعض في حادثة واحدة مفهومة، وتحسبلها درجة خطورة واضحة السبب. وبعد كده AI محلي (Ollama) يساعد المحلل يفهم الموقف بسرعة ويكتبله تقرير.</p>
+  <p><b>القرار النهائي دايمًا في إيد الإنسان مش النظام.</b> يعني إحنا مش بنعمل AI بيدّي أوامر، إحنا بنعمل AI بيسهّل شغل المحلل ويسرّعه.</p>
+
+  <h3>المشكلة اللي بنحلها</h3>
+  <p>في أي SOC حقيقي المحلل بيستقبل مئات التنبيهات يوميًا، وغالبيتها منفصلة عن بعض حتى لو كانت أجزاء من نفس الهجوم. فبيضيع وقت كبير في ربط الأحداث يدويًا، وفي تحديد أنهي تنبيه خطير فعلاً وأنهي false positive (ضوضاء بس)، وبعدها وقت إضافي في كتابة تقرير الحادثة.</p>
+  <p>مشروعنا بيوتمت الجزء الميكانيكي (الربط والتصنيف والتقرير) ويسيب القرار الحساس للإنسان: نتصرف ولا لأ.</p>
+
+  <div class="legend">
+    <div class="note">
+      <p><b>🔧</b> يعني خطوة لازم تنفذها بنفسك على جهازك (تثبيت، تشغيل، اختبار فعلي). محدش غيرك يقدر يعملها.</p>
+      <p><b>🤖</b> يعني حاجة ممكن الـ AI يكتبهالك (كود، Rules، ملف، وثيقة). بس لازم تفهمها وتجرّبها قبل ما تسلّمها، لأن اللجنة هتسأل كل واحد عن شغله.</p>
+    </div>
+  </div>
+</section>
+
+<section id="flow">
+  <h2>رحلة الحادثة جوه النظام</h2>
+  <p>ده الـ flow الكامل من الهجوم لحد التقرير. الدايرة الملونة بتقول مين مسؤول عن كل مرحلة.</p>
+  <ol class="flow">
+    <li>
+      <div class="st"><b>هجوم بيحصل</b><span class="owners"><span class="own o2">2</span></span></div>
+      <p>بيتنفّذ فعلاً (مش نظريًا) داخل Lab معزول من Kali Linux وAtomic Red Team.</p>
+    </li>
+    <li>
+      <div class="st"><b>Wazuh يكتشفه ويطلّع alert</b><span class="owners"><span class="own o1">1</span></span></div>
+      <p>Sysmon على Windows وauditd على Linux بيدّوا Wazuh تفاصيل دقيقة، والـ rules بتحوّلها لتنبيهات.</p>
+    </li>
+    <li>
+      <div class="st"><b>محرك Python يربط التنبيهات المرتبطة في Incident واحد</b><span class="owners"><span class="own o3">3</span></span></div>
+      <p>بدل 10 تنبيهات متفرقة، المحلل يشوف حادثة واحدة واضحة.</p>
+    </li>
+    <li>
+      <div class="st"><b>إثراء بمعلومات استخباراتية</b><span class="owners"><span class="own o3">3</span></span></div>
+      <p>أي IP أو Hash مشبوه بيتفحص على VirusTotal.</p>
+    </li>
+    <li>
+      <div class="st"><b>حساب Risk Score من 0 لـ 100</b><span class="owners"><span class="own o3">3</span></span></div>
+      <p>مع توضيح سبب كل نقطة اتحسبت، عشان الرقم يبقى مفهوم مش صندوق أسود.</p>
+    </li>
+    <li>
+      <div class="st"><b>نموذج AI محلي (Ollama) يكتب ملخص التحقيق</b><span class="owners"><span class="own o4">4</span></span></div>
+      <p>إيه اللي حصل، إيه الدليل، تقنيات MITRE المستخدمة، والإجراء المقترح. ولو الدليل مش كفاية يقول <code>insufficient evidence</code> بدل ما يخمّن.</p>
+    </li>
+    <li>
+      <div class="st"><b>المحلل يشوف كل ده في الـ Dashboard ويقرر</b><span class="owners"><span class="own o5">5</span></span></div>
+      <p>Approve أو Reject على الإجراء المقترح.</p>
+    </li>
+    <li>
+      <div class="st"><b>لو Approve: استجابة تلقائية محدودة (حظر الـ IP)</b><span class="owners"><span class="own o1">1</span><span class="own o5">5</span></span></div>
+      <p>الاستجابة بتحصل بعد موافقة الإنسان بس.</p>
+    </li>
+    <li>
+      <div class="st"><b>تقرير نهائي كامل يتولّد تلقائيًا</b><span class="owners"><span class="own o4">4</span><span class="own o5">5</span></span></div>
+      <p>الشخص 6 بيجمّع كل التقارير والأدلة في الملف النهائي للمشروع.</p>
+    </li>
+  </ol>
+</section>
+
+<section id="tools">
+  <h2>الأدوات وليه اخترناها</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>الأداة</th><th>بتعمل إيه</th><th>ليه</th></tr></thead>
+    <tbody>
+      <tr><td><b>Wazuh</b></td><td>كشف التنبيهات (SIEM)</td><td>مجاني، خفيف، ومعيار في الصناعة</td></tr>
+      <tr><td><b>Sysmon / auditd</b></td><td>تفاصيل دقيقة عن أحداث Windows وLinux</td><td>من غيرها الـ alerts بتبقى سطحية</td></tr>
+      <tr><td><b>Kali + Atomic Red Team</b></td><td>تنفيذ الهجمات داخل الـ Lab</td><td>هجمات حقيقية مربوطة بتقنيات MITRE</td></tr>
+      <tr><td><b>Python</b></td><td>محرك الربط وحساب الخطورة وربط الأجزاء</td><td>كل الفريق عنده خلفية فيه من الجامعة</td></tr>
+      <tr><td><b>SQLite</b></td><td>تخزين البيانات</td><td>بسيط ومش محتاج سيرفر داتابيز منفصل</td></tr>
+      <tr><td><b>Streamlit</b></td><td>الـ Dashboard</td><td>أسرع طريقة لواجهة محترفة من غير خبرة frontend</td></tr>
+      <tr><td><b>Ollama (Llama 3 / Mistral)</b></td><td>التحقيق الذكي وكتابة الملخصات</td><td>محلي: البيانات الحساسة ما بتسيبش الجهاز</td></tr>
+      <tr><td><b>VirusTotal API</b></td><td>معلومات استخباراتية عن IPs وHashes</td><td>مجاني وموثوق وسهل التكامل</td></tr>
+      <tr><td><b>MITRE ATT&amp;CK</b></td><td>تصنيف موحّد للهجمات</td><td>معيار عالمي، وأي حد في المجال هيفهم التقرير</td></tr>
+      <tr><td><b>Wireshark (+ Snort اختياري)</b></td><td>التقاط الشبكة وتوثيقها كأدلة</td><td>PCAP files بتتحط في الـ evidence</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="warn">
+    <p><b>أدوات استبعدناها عمدًا:</b> TheHive، Cortex، MISP، OpenCTI، ELK، Splunk، FastAPI، PostgreSQL، Kubernetes، وأي cloud provider.</p>
+    <p>مش لأنها وحشة. كل واحدة فيها محتاجة بيئة تشغيل وintegration منفصلين، وده وقت إحنا مش هنقدر نخسره من غير قيمة مضافة. التذاكر (ticketing) هنغطي مفهومها بجدول <code>decisions</code> في الداتابيز.</p>
+    <p>القاعدة: أي إضافة جديدة بعد الاتفاق لازم تتجرب في الـ Lab الأول، ومتتحسبش جزء رسمي من المشروع قبل ما تشتغل.</p>
+  </div>
+</section>
+
+<section id="scenarios">
+  <h2>السيناريوهات الثلاثة</h2>
+  <p>كل سيناريو بيتنفّذ فعلاً داخل الـ Lab المعزول بالـ Kali وAtomic Red Team، مش مجرد شرح على الورق.</p>
+
+  <div class="scn">
+    <h3>السيناريو 1: Brute Force</h3>
+    <p><span class="tag">MITRE</span><code>T1110</code> <code>T1059.001</code></p>
+    <p>Brute force على SSH أو RDP ← دخول ناجح ← تنفيذ PowerShell مشبوه. ومحاولة Persistence لو الوقت سمح.</p>
+  </div>
+  <div class="scn">
+    <h3>السيناريو 2: Web Attack</h3>
+    <p><span class="tag">MITRE</span>الشخص 4 يأكد التقنية (غالبًا <code>T1190</code>)</p>
+    <p>طلب HTTP فيه نمط SQL Injection على سيرفر Apache في Linux-Endpoint، والمطلوب إن Wazuh يكتشفه من الـ access logs. وعملية أو اتصال خارجي مشبوه بعدها اختياري.</p>
+  </div>
+  <div class="scn">
+    <h3>السيناريو 3: IOC Investigation <span class="star">لو الوقت سمح (أسبوع 6)</span></h3>
+    <p>ملف مشبوه (هنستخدم EICAR test file: ملف اختبار آمن ومعترف بيه عالميًا لاختبار أنظمة الحماية) ← استخراج الـ Hash ← فحصه على VirusTotal ← ربطه بتقنية MITRE مناسبة.</p>
+  </div>
+  <div class="note"><p>كل الهجمات داخل الـ Lab بس: من Kali على الـ VMs بتاعتنا. محدش يوجّه أي حاجة لأجهزة أو شبكات برّه الـ Lab.</p></div>
+</section>
+
+<section id="team">
+  <h2>تقسيم الفريق (6 أشخاص)</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>الشخص</th><th>الدور</th><th>المسؤولية الأساسية</th></tr></thead>
+    <tbody>
+      <tr><td><span class="own o1">1</span> الشخص 1</td><td><span class="en">Wazuh + Endpoints + Detection</span></td><td>بناء الـ Lab، الـ rules، سكريبت الحظر، Setup Guide</td></tr>
+      <tr><td><span class="own o2">2</span> الشخص 2</td><td><span class="en">Attack Simulation + Network</span></td><td>تنفيذ الهجمات، Attack Playbook، Wireshark وSnort وملفات PCAP</td></tr>
+      <tr><td><span class="own o3">3</span> الشخص 3</td><td><span class="en">Correlation Engine + Threat Intel</span></td><td>الربط في Incidents، VirusTotal، حساب الـ Risk Score، شكل الداتابيز</td></tr>
+      <tr><td><span class="own o4">4</span> الشخص 4</td><td><span class="en">Ollama + AI Investigation + MITRE</span></td><td>الـ prompts، ربط الـ AI بالنظام، Validation Log، MITRE mapping</td></tr>
+      <tr><td><span class="own o5">5</span> الشخص 5</td><td><span class="en">Dashboard + Integration</span></td><td>Streamlit، Approve/Reject، زرار التقرير، المؤشرات (KPIs)</td></tr>
+      <tr><td><span class="own o6">6</span> الشخص 6</td><td><span class="en">IR / DFIR + Documentation</span></td><td>Playbooks، خطط الاحتواء والاسترجاع، الأدلة، Lessons Learned، التقرير النهائي والعرض</td></tr>
+    </tbody>
+  </table></div>
+  <p>كل واحد مسؤول عن جزء واضح، لكن الكل لازم يفهم النظام ككل عشان أي حد يقدر يجاوب أي سؤال من اللجنة. الشخص 6 هو اللي بيحوّل شغل الكل لوثائق وأدلة، وده بيغطي الجزء اللي مفيش حد فينا متخصص فيه (DFIR والـ IR).</p>
+</section>
+
+<section id="timeline">
+  <h2>الجدول الزمني (7 أسابيع)</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>الأسبوع</th><th>الهدف</th></tr></thead>
+    <tbody>
+      <tr><td><b>1</b></td><td>تجهيز البيئة (Wazuh + Endpoints). أول alert حقيقي يشتغل.</td></tr>
+      <tr><td><b>2</b></td><td>Detection Rules للسيناريو 1 و2 مربوطة بـ MITRE.</td></tr>
+      <tr><td><b>3</b></td><td>محرك الربط (Correlation) + الإثراء بالـ Threat Intelligence. <b>أول مسار كامل بدون AI:</b> هجوم ← alert ← incident ← يظهر في الـ Dashboard.</td></tr>
+      <tr><td><b>4</b></td><td>دمج الـ AI: كل incident ياخد ملخص تحقيق تلقائي. <b>المسار الكامل مع الـ AI شغّال.</b></td></tr>
+      <tr><td><b>5</b></td><td>الـ Dashboard الكامل + الاستجابة التلقائية + التقرير الآلي (MVP كامل). <b>نقطة قرار:</b> لو متأخرين هنا نبدأ نقص من قائمة "لو الوقت ضاق".</td></tr>
+      <tr><td><b>6</b></td><td>السيناريو الثالث (لو الوقت سمح) + تحسينات عامة + إنهاء وثائق الـ IR.</td></tr>
+      <tr><td><b>7</b></td><td>تجميد: اختبار شامل فقط + توثيق + تجهيز العرض النهائي. بدون أي إضافات جديدة.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><p>الأسبوع 1 هو اللي بيحدد سرعتنا كلنا، لأن الباقيين محتاجين بيانات حقيقية من الـ Lab عشان يختبروا شغلهم عليها. فخلّوه ماشي بجد.</p></div>
+</section>
+
+<section id="contracts">
+  <h2>الاتفاقات بين الأجزاء</h2>
+  <p>أكتر مكان بينهار فيه المشروع هو الدمج. عشان كده فيه 3 حاجات لازم نتفق على شكلها بدري، لأن أكتر من شخص بيعتمد عليها:</p>
+  <div class="scroll"><table>
+    <thead><tr><th>الاتفاق</th><th>من ← إلى</th><th>بيحدد إيه</th><th>أول نسخة</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>شكل الـ Alert</b> (<code>alerts.json</code>)</td>
+        <td><span class="own o1">1</span> ← <span class="own o3">3</span> <span class="own o4">4</span> <span class="own o5">5</span></td>
+        <td>الحقول اللي طالعة من Wazuh: الـ agent، رقم الـ rule ومستواه، الـ IP، الوقت، تقنية MITRE، نص الـ log</td>
+        <td>نهاية أسبوع 1، وتتأكد في أسبوع 2</td>
+      </tr>
+      <tr>
+        <td><b>شكل الـ Incident</b> (JSON)</td>
+        <td><span class="own o3">3</span> ← <span class="own o4">4</span></td>
+        <td>الـ alerts اللي جواه، الـ risk score وسبب كل نقطة، ونتايج VirusTotal</td>
+        <td>نسخة أولى أسبوع 3، ونهائية أسبوع 4</td>
+      </tr>
+      <tr>
+        <td><b>شكل الداتابيز</b> (<code>argus.db</code>)</td>
+        <td><span class="own o3">3</span> ← <span class="own o4">4</span> <span class="own o5">5</span></td>
+        <td>جداول <code>alerts</code> و<code>incidents</code> (فيه عمود <code>ai_summary</code>) و<code>decisions</code> (الشخص 5 بيضيفه)</td>
+        <td>نسخة تجريبية أسبوع 2</td>
+      </tr>
+    </tbody>
+  </table></div>
+  <div class="warn"><p>أي تعديل في واحد من التلاتة يتبلّغ للكل قبل ما يتعمل، مش بعده.</p></div>
+
+  <h3>مين بيسلّم لمين وإمتى</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>الأسبوع</th><th>التسليم</th></tr></thead>
+    <tbody>
+      <tr><td>1 (آخره)</td><td><span class="own o1">1</span> ← <span class="own o3">3</span> <span class="own o4">4</span> <span class="own o5">5</span> : نسخة تجريبية من <code>alerts.json</code></td></tr>
+      <tr><td>2</td><td><span class="own o3">3</span> ← <span class="own o5">5</span> : نسخة تجريبية من <code>argus.db</code>. و<span class="own o2">2</span> ↔ <span class="own o1">1</span> : موعد أسبوعي ثابت لتنفيذ الهجمات واختبار الـ rules</td></tr>
+      <tr><td>3</td><td><span class="own o3">3</span> ← <span class="own o4">4</span> : أول incident JSON حقيقي. و<span class="own o2">2</span> ← <span class="own o6">6</span> : ملفات PCAP والـ Attack Playbook</td></tr>
+      <tr><td>4</td><td><span class="own o4">4</span> يملأ عمود <code>ai_summary</code> في الداتابيز، و<span class="own o5">5</span> يعرضه</td></tr>
+      <tr><td>5</td><td><span class="own o1">1</span> ← <span class="own o5">5</span> : سكريبت الحظر. و<span class="own o5">5</span> ← <span class="own o6">6</span> : screenshots وبيانات المؤشرات</td></tr>
+      <tr><td>5 لـ 7</td><td>كل واحد ← <span class="own o6">6</span> : logs وscreenshots وأدلة كل تشغيل ناجح للسيناريوهات</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="plans">
+  <h2>خطة كل شخص أسبوع بأسبوع</h2>
+  <p>افتح الشخص بتاعك. الخطوات اللي عليها <b>🔧</b> لازم تتنفذ بإيدك، واللي عليها <b>🤖</b> ممكن الـ AI يكتبها معاك.</p>
+  <div class="bar"><button class="btn" id="toggleAll" type="button">افتح كل الخطط</button></div>
+
+  <!-- ================= PERSON 1 ================= -->
+  <details class="m c1" id="m1">
+    <summary><span class="own o1">1</span> الشخص 1 <span class="en">Wazuh + Windows/Linux + Detection Engineering</span></summary>
+    <div class="body">
+      <p class="meta"><b>هتسلّم:</b> Lab شغّال، Rules مختبرة، سكريبت حظر، Setup Guide، جدول الاختبار. <b>بتستلم من:</b> الشخص 2 (الهجمات اللي بتختبر بيها الـ rules).</p>
+
+      <div class="wk"><h4>الأسبوع 1<small>بناء الـ Lab وأول alert</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>نزّل VirtualBox، وصورة Ubuntu Server 22.04 LTS من الموقع الرسمي. اعمل VM اسمها <code>Wazuh-Manager</code> (رام 4GB كحد أدنى والأفضل 6 لـ 8GB لو الجهاز يسمح، وهارد 40GB).</span></li>
+        <li><span class="k">🔧</span><span>ثبّت Wazuh (all-in-one) باتباع الـ Quickstart الرسمي على documentation.wazuh.com. الأوامر والإصدارات بتتحدّث، فاتبع الموقع الرسمي مش حد تاني. احفظ الـ username والـ password اللي بيطلعوا في الآخر.</span></li>
+        <li><span class="k">🔧</span><span>افتح الـ Dashboard من المتصفح على عنوان الـ Manager وسجّل دخول للتأكد إنه شغال.</span></li>
+        <li><span class="k">🔧</span><span>اعمل VM تانية Windows 10/11 اسمها <code>Win-Endpoint</code> (4GB)، وVM تالتة Ubuntu اسمها <code>Linux-Endpoint</code>.</span></li>
+        <li><span class="k">🔧</span><span>خلّي الـ VMs كلها (ومعاها Kali بتاعة الشخص 2) على نفس الشبكة (Internal Network أو Host-only في VirtualBox)، وتأكد بـ ping إن كل واحدة شايفة التانية.</span></li>
+        <li><span class="k">🔧</span><span>ثبّت الـ Wazuh Agent على Windows وLinux. من الـ Dashboard استخدم Deploy new agent وهو بيولّد لك الأمر الصح. وتأكد إن الاتنين بحالة Active.</span></li>
+        <li><span class="k">🔧</span><span>على Win-Endpoint: ثبّت Sysmon بـ config جاهز (<code>SwiftOnSecurity/sysmon-config</code> من GitHub)، وعرّف الـ agent يقرا قناة Sysmon من <code>ossec.conf</code>، وأعد تشغيل خدمة الـ agent. <b>🤖</b> الـ AI يكتبلك الأسطر بالظبط.</span></li>
+        <li><span class="k">🔧</span><span>على Linux-Endpoint: ثبّت <code>auditd</code> وحطّ rules لمراقبة <code>/etc/passwd</code> ومحاولات sudo، وتأكد إن الـ agent بيقرا ملف audit log. <b>🤖</b> الـ AI يكتبلك ملف الـ rules.</span></li>
+        <li><span class="k">🔧</span><span>جرّب حدث بسيط على كل جهاز وشوف هل ظهر في الـ Dashboard. صوّر فيديو قصير (دقيقتين) فيه alert حقيقي من Windows وواحد من Linux، كإثبات للفريق.</span></li>
+        <li><span class="k">🔧</span><span>ابعت للشخص 3 و4 و5 نسخة تجريبية من <code>alerts.json</code> (موجود على الـ Manager في <code>/var/ossec/logs/alerts/</code>).</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 2<small>الـ Detection Rules</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>اتفق مع الشخص 2 على موعد ثابت كل أسبوع لتنفيذ الهجمات: أنهي IP يهاجم أنهي VM وعلى أنهي بورت.</span></li>
+        <li><span class="k">🤖</span><span>rule مخصصة لكشف SSH/RDP brute force (عدد المحاولات الفاشلة في دقيقة). ممكن تعتمد على قواعد Wazuh الجاهزة وتخصصها.</span></li>
+        <li><span class="k">🤖</span><span>rule تانية لكشف login ناجح بعد سلسلة محاولات فاشلة.</span></li>
+        <li><span class="k">🤖</span><span>rule لكشف PowerShell مشبوه: Sysmon Event ID 1 مع <code>-enc</code> أو <code>-nop</code> أو <code>-w hidden</code> في الـ command line.</span></li>
+        <li><span class="k">🤖</span><span>rule لكشف SQL Injection في Apache access logs (لو هتستخدموا Apache: ثبّته على Linux-Endpoint الأول).</span></li>
+        <li><span class="k">🔧</span><span>حطّ الـ rules في <code>/var/ossec/etc/rules/local_rules.xml</code> على الـ Manager. قبل ما تعمل restart لـ wazuh-manager، اختبر كل rule بـ <code>wazuh-logtest</code> عشان تتأكد إن الـ syntax صح.</span></li>
+        <li><span class="k">🔧</span><span>الشخص 2 ينفّذ الهجوم فعلاً وإنتو الاتنين تتابعوا الـ Dashboard لحظة بلحظة وتتأكدوا إن الـ alert طلع.</span></li>
+        <li><span class="k">🔧</span><span>اعمل جدول (Excel أو Sheet): اسم الـ rule | MITRE ID | تم الاختبار؟ (نعم/لا) | ملاحظات. وابعته للفريق نهاية الأسبوع. عدد الـ rules المستهدف 5 على الأقل.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 3<small>تجهيز البيانات للباقي</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>(اختياري) فعّل Wazuh API واعمل user بصلاحيات قراءة فقط، لو الشخص 3 قرر يستخدمه بدل قراءة <code>alerts.json</code> مباشرة.</span></li>
+        <li><span class="k">🔧</span><span>ابعت للشخص 3 تلات نسخ من alert حقيقي (JSON) واسأله هل كل الحقول اللي محتاجها موجودة. لو محتاج حقل إضافي، عدّل الـ rule عشان تضيفه.</span></li>
+        <li><span class="k">🤖</span><span>rule مبدئية للسيناريو 3 (كشف hash ملف معين أو اتصال بـ IP معروف كـ malicious) لو هتنفذوه.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسابيع 4 لـ 7<small>التظبيط والاستجابة</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>شغّل النظام يوم كامل، وسجّل أي alert طلع من غير سبب حقيقي (false positive)، وعدّل الـ thresholds. دوّن كل تعديل وسببه (ده Tuning Notes، مطلوب في الكتيب).</span></li>
+        <li><span class="k">🤖</span><span>سكريبت bash بسيط يحظر IP عن طريق iptables (أو استخدم active response الجاهز في Wazuh).</span></li>
+        <li><span class="k">🔧</span><span>اتفق مع الشخص 5 إزاي الـ Approve في الـ Dashboard هيشغّل الحظر على الجهاز: عن طريق Wazuh API (active-response) أو SSH. اختاروا الأسهل في أسبوع 5.</span></li>
+        <li><span class="k">🔧</span><span>اختبر: incident عالي الخطورة يظهر ← Approve ← الـ IP اتحظر فعلاً. تأكد بـ <code>sudo iptables -L</code>.</span></li>
+        <li><span class="k">🔧</span><span>كرّر كل سيناريو 3 مرات على الأقل للتأكد من الاستقرار.</span></li>
+        <li><span class="k">🔧</span><span>اكتب Setup Guide (مستند واحد) فيه كل خطوة تثبيت وضبط عملتها من الأول.</span></li>
+        <li><span class="k">🔧</span><span>اعمل Snapshot لكل VM بعد ما كل حاجة تشتغل تمام (VirtualBox: Machine ← Take Snapshot)، عشان ترجع لها لو حصلت مشكلة وقت العرض.</span></li>
+      </ul></div>
+    </div>
+  </details>
+
+  <!-- ================= PERSON 2 ================= -->
+  <details class="m c2" id="m2">
+    <summary><span class="own o2">2</span> الشخص 2 <span class="en">Attack Simulation + Network</span></summary>
+    <div class="body">
+      <p class="meta"><b>هتسلّم:</b> Attack Playbook، سكريبت تشغيل السيناريوهات، ملفات PCAP. <b>بتستلم من:</b> الشخص 1 (الـ Lab جاهز). <b>بتسلّم لـ:</b> الشخص 1 والشخص 6.</p>
+
+      <div class="wk"><h4>الأسبوع 1<small>جهّز أدوات الهجوم</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>نزّل صورة Kali Linux (VM version) من kali.org واستوردها في VirtualBox باسم <code>Kali-Attacker</code> على نفس شبكة الـ Lab.</span></li>
+        <li><span class="k">🔧</span><span>تأكد بـ ping إن Kali شايفة كل الـ VMs (Wazuh-Manager وWin-Endpoint وLinux-Endpoint).</span></li>
+        <li><span class="k">🔧</span><span>نزّل وثبّت Atomic Red Team على Win-Endpoint باتباع التعليمات الرسمية على GitHub (<code>redcanaryco/atomic-red-team</code>).</span></li>
+        <li><span class="k">🔧</span><span>اقرا صفحات MITRE ATT&amp;CK الرسمية لـ <code>T1110</code> (Brute Force) و<code>T1059.001</code> (PowerShell). اقرا دقيقتين لكل واحدة وافهم الفكرة مش تحفظ.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 2<small>نفّذ السيناريوهات</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>على Kali: جرّب Hydra على SSH بتاع Linux-Endpoint، على الـ Lab بتاعنا بس. أول 5 لـ 10 محاولات بباسورد غلط، وآخر محاولة تنجح. اعمل ملف wordlist صغير مخصص للاختبار وحط الباسورد الصح في آخر سطر.</span></li>
+        <li><span class="k">🔧</span><span>بعد الدخول الناجح، شغّل technique من Atomic Red Team على Win-Endpoint بأمر <code>Invoke-AtomicTest T1059.001</code>.</span></li>
+        <li><span class="k">🔧</span><span>لو فيه Apache على Linux-Endpoint (اتفق مع الشخص 1): جرّب من Kali طلب <code>curl</code> فيه نمط SQL Injection بسيط.</span></li>
+        <li><span class="k">🤖</span><span>سكريبت bash بسيط يجمع خطوات كل سيناريو في أمر واحد بدل ما تكتبهم كل مرة.</span></li>
+        <li><span class="k">🔧</span><span>اتفق مع الشخص 1 على موعد ثابت أسبوعي لتنفيذ الهجمات وهو بيتابع الـ Dashboard.</span></li>
+        <li><span class="k">🔧</span><span>اكتب Attack Playbook (مستند): لكل سيناريو الأوامر بالظبط + الوقت المتوقع + النتيجة المتوقعة.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 3<small>الشبكة والأدلة</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>لو الفريق قرر يستخدم Snort: ثبّته على Kali أو على VM منفصلة للمراقبة. <b>🤖</b> الـ AI يكتبلك rule بسيطة تكتشف نمط الـ brute force traffic.</span></li>
+        <li><span class="k">🔧</span><span>شغّل Wireshark أثناء تنفيذ كل سيناريو واحفظ الـ PCAP file (File ← Save As).</span></li>
+        <li><span class="k">🔧</span><span>ابعت ملفات الـ PCAP للشخص 6 عشان تتحط في الـ evidence.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسابيع 4 و5<small>بيانات كاملة + السيناريو 3</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>نفّذ كل سيناريو مرة كمان بحضور الشخص 4 عشان يشوف شكل البيانات الكاملة.</span></li>
+        <li><span class="k">🔧</span><span>جهّز السيناريو 3: نزّل EICAR test file من eicar.org (ملف اختبار آمن معترف بيه عالميًا) وحطه على Win-Endpoint. Windows Defender غالبًا هيكتشفه ويحذفه فورًا، وده مفيد. المهم إن الحدث يظهر في Wazuh، وممكن تحتاجوا تضبطوا الـ agent مع الشخص 1 عشان يقرا قناة Defender أو يراقب الملفات.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوعين 6 و7<small>بروفات</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>شارك في الـ dry runs الكاملة مع الفريق (3 مرات على الأقل).</span></li>
+        <li><span class="k">🔧</span><span>جهّز شرح تقني قصير (نص أو سلايد) لكل سيناريو يتقال وقت الـ Demo.</span></li>
+      </ul></div>
+    </div>
+  </details>
+
+  <!-- ================= PERSON 3 ================= -->
+  <details class="m c3" id="m3">
+    <summary><span class="own o3">3</span> الشخص 3 <span class="en">Python Correlation Engine + Threat Intelligence</span></summary>
+    <div class="body">
+      <p class="meta"><b>هتسلّم:</b> محرك الربط، الـ Risk Score، شكل الداتابيز، Threat Intel Report. <b>بتستلم من:</b> الشخص 1 (alerts). <b>بتسلّم لـ:</b> الشخص 4 (incident JSON) والشخص 5 (الداتابيز).</p>
+
+      <div class="wk"><h4>الأسبوع 1<small>الأساسيات والداتابيز</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>ثبّت Python 3.10+ وVS Code. اعمل مجلد مشروع جديد وفيه virtual environment: <code>python -m venv venv</code> ثم فعّله.</span></li>
+        <li><span class="k">🤖</span><span>أول سكريبت بايثون (<code>read_alerts.py</code>): يقرا <code>alerts.json</code> ويطبع الـ alerts منسقة.</span></li>
+        <li><span class="k">🔧</span><span>استلم من الشخص 1 نسخة تجريبية من <code>alerts.json</code> (أو انسخها بنفسك عبر SSH من الـ Manager VM) وجرّب السكريبت عليها.</span></li>
+        <li><span class="k">🤖</span><span>ملف <code>schema.sql</code> فيه تعريف جدولين: <code>alerts</code> و<code>incidents</code> بكل الأعمدة المطلوبة. ثم <code>init_db.py</code> ينفّذه وينشئ ملف <code>argus.db</code>.</span></li>
+        <li><span class="k">🔧</span><span>ثبّت أداة لعرض SQLite بصريًا (زي DB Browser for SQLite) عشان تشوف البيانات بعينك.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 2<small>الإثراء بـ VirusTotal</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>اتأكد من الشخص 1 من شكل الـ alert الدقيق (الحقول الموجودة فعليًا).</span></li>
+        <li><span class="k">🔧</span><span>اعمل حساب مجاني على virustotal.com واحصل على الـ API Key من صفحة الإعدادات.</span></li>
+        <li><span class="k">🤖</span><span>function بايثون كاملة (<code>check_virustotal.py</code>) بتاخد IP أو hash وتبعتها لـ VirusTotal API وترجّع النتيجة.</span></li>
+        <li><span class="k">🔧</span><span>حط الـ API Key في ملف <code>.env</code> منفصل (وحط الملف ده في <code>.gitignore</code>). متحطوش في الكود مباشرة.</span></li>
+        <li><span class="k">🔧</span><span>جرّب الـ function على IP حقيقي وشوف هل بترجّع نتيجة صح. الـ API المجاني له حد أقصى للطلبات، فخزّن النتايج في الداتابيز عشان ما تسألش عن نفس الـ IP مرتين.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 3 <span class="star">الأهم بالنسبالك</span><small>محرك الربط</small></h4><ul class="steps">
+        <li><span class="k">🤖</span><span>الكود الكامل لمحرك الربط (<code>correlation_engine.py</code>): بيقرا alerts جديدة ويجمع اللي على نفس الـ <code>src_ip</code> أو الـ agent خلال نافذة 5 دقايق وينشئ incident.</span></li>
+        <li><span class="k">🔧</span><span>خلّي المحرك يشتغل بشكل دوري (كل دقيقة مثلًا) أو شغّله يدويًا وقت الاختبار.</span></li>
+        <li><span class="k">🤖</span><span>function لحساب الـ risk score بأوزان مبدئية: brute force +20، PowerShell +25، IP مشبوه +20، وإضافي +5 لكل alert زيادة، بحد أقصى 100. الأوزان قابلة للتعديل بعد الاختبار.</span></li>
+        <li><span class="k">🔧</span><span>اختبر الكود كامل مع السيناريو 1 الحقيقي: الشخص 2 ينفّذ الهجوم، وإنت تشغّل السكريبت وتشوف: هل طلع incident واحد بدل عدة alerts؟ لو النتيجة غلط، راجع منطق الـ time window وشرط التجميع وعدّله.</span></li>
+        <li><span class="k">🔧</span><span>ابعت للشخص 4 أول نسخة من الـ incident JSON.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 4<small>شكل الـ Incident النهائي</small></h4><ul class="steps">
+        <li><span class="k">🤖</span><span>function تجهّز الـ incident في شكل JSON منظم: كل التفاصيل + سبب كل نقطة في الـ risk score. ده اللي هيتبعت للشخص 4.</span></li>
+        <li><span class="k">🔧</span><span>ابعت النسخة النهائية للشخص 4 عشان يبدأ يشتغل عليها.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 5<small>الدمج</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>اتأكد إن الـ Dashboard بتاع الشخص 5 بيقرا من نفس ملف <code>argus.db</code> بتاعك مباشرة.</span></li>
+        <li><span class="k">🔧</span><span>اختبر السيناريو 1 و2 مع بعض في نفس الوقت، وتأكد إن النظام مش بيخلط الـ incidents ببعض.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوعين 6 و7<small>التحسين والتوثيق</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>لو السيناريو 3 موجود: عدّل الكود يتعامل مع hash lookup مش IP بس.</span></li>
+        <li><span class="k">🔧</span><span>راجع الأوزان بناءً على نتائج الاختبار وعدّلها لو محتاجة.</span></li>
+        <li><span class="k">🔧</span><span>اكتب Threat Intel Enrichment Report: إيه اللي اتفحص وإيه كانت النتيجة.</span></li>
+        <li><span class="k">🔧</span><span>اكتب توثيق (مستند) يشرح منطق الربط والحساب بالتفصيل، عشان تقدر تشرحه للجنة.</span></li>
+      </ul></div>
+    </div>
+  </details>
+
+  <!-- ================= PERSON 4 ================= -->
+  <details class="m c4" id="m4">
+    <summary><span class="own o4">4</span> الشخص 4 <span class="en">Ollama + AI Investigation + MITRE Mapping</span></summary>
+    <div class="body">
+      <p class="meta"><b>هتسلّم:</b> AI Lab Guide، Model Benchmark، Prompt Library، Validation Log، جدول MITRE، ملخصات الـ AI في الداتابيز. <b>بتستلم من:</b> الشخص 3 (incident JSON). <b>بتسلّم لـ:</b> الشخص 5 (عمود <code>ai_summary</code> وprompt التقرير).</p>
+
+      <div class="wk"><h4>الأسبوع 1<small>تجهيز الـ AI المحلي</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>روح لـ ollama.com ونزّل النسخة المناسبة لجهازك (Windows أو Mac أو Linux).</span></li>
+        <li><span class="k">🔧</span><span>افتح Terminal وجرّب <code>ollama run llama3</code>. لو مفيش الموديل هيحمّله أوتوماتيك (حجمه حوالي 4 لـ 5GB، فمحتاج نت كويس).</span></li>
+        <li><span class="k">🔧</span><span>جرّب تسأله سؤال بسيط (زي "what is 2+2") وشوف هل بيرد. لو جهازك ضعيف وبياخد وقت طويل، جرّب موديل أخف (<code>mistral</code> أو <code>phi</code>).</span></li>
+        <li><span class="k">🔧</span><span>قارن 2 لـ 3 موديلات على نفس الـ incident التجريبي (سرعة الرد وجودته) في جدول صغير. ده الـ Local Model Benchmark المطلوب في الكتيب.</span></li>
+        <li><span class="k">🔧</span><span>اعمل جدول (Excel): MITRE Technique ID | الاسم | وصف قصير، لكل technique هنستخدمها (<code>T1110</code>, <code>T1059.001</code>, <code>T1078</code> إلخ).</span></li>
+        <li><span class="k">🔧</span><span>اكتب AI Lab Setup Guide قصير بالخطوات اللي عملتها.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 2<small>أول Prompt</small></h4><ul class="steps">
+        <li><span class="k">🤖</span><span>أول نسخة من الـ Prompt Template كاملة (نص جاهز يتحط في الكود). لازم تتضمن شرط إن الـ AI يستخدم الأدلة المعطاة فقط، ولو مش كفاية يقول <code>insufficient evidence</code>.</span></li>
+        <li><span class="k">🔧</span><span>ثبّت مكتبة بايثون للتواصل مع Ollama: <code>pip install ollama</code>.</span></li>
+        <li><span class="k">🤖</span><span>سكريبت بايثون (<code>ai_investigate.py</code>) بيبعت الـ prompt لـ Ollama عن طريق المكتبة ويستقبل الرد.</span></li>
+        <li><span class="k">🔧</span><span>جرّب السكريبت على بيانات incident وهمية وشوف شكل الرد (الـ AI يكتبلك sample كمان).</span></li>
+        <li><span class="k">🔧</span><span>ابدأ SOC Prompt Library: مستند فيه كل prompt وعلى إيه اتجرّب.</span></li>
+        <li><span class="k">🔧</span><span>اعمل Privacy/Ethics Checklist مع الشخص 6: ليه local LLM (البيانات ما بتسيبش الجهاز) وإيه حدود الاعتماد على الـ AI.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 3<small>بيانات حقيقية + مراقبة الهلوسة</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>استلم من الشخص 3 نموذج حقيقي من الـ incident JSON.</span></li>
+        <li><span class="k">🤖</span><span>الـ AI يعدّلك الـ prompt عشان يتعامل مع شكل بياناتنا الحقيقي بالظبط.</span></li>
+        <li><span class="k">🔧</span><span>جرّب على بيانات السيناريو 1 الحقيقية وشوف: هل الرد منطقي؟</span></li>
+        <li><span class="k">🔧</span><span>ابدأ Hallucination/Validation Log: لكل رد من الـ AI، قارن كل ادعاء فيه بالدليل الفعلي (مدعوم / مش مدعوم). ده مطلوب في الكتيب.</span></li>
+        <li><span class="k">🔧</span><span>لو الرد بيخمّن حاجات مش مؤكدة: عدّل الـ prompt عشان يقول <code>insufficient evidence</code> بدل التخمين.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 4<small>الربط الكامل</small></h4><ul class="steps">
+        <li><span class="k">🤖</span><span>عدّل الـ prompt يشرح بالتفصيل سبب الـ risk score (explainability).</span></li>
+        <li><span class="k">🤖</span><span>الكود اللي بيربط: ياخد incident جديد من الداتابيز ← يبعته لـ Ollama ← يحفظ الرد في عمود <code>ai_summary</code> في جدول <code>incidents</code>.</span></li>
+        <li><span class="k">🔧</span><span>شغّل الكود على السيناريو 1 و2 مع بعض وتأكد إن الردود دقيقة.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 5<small>التقرير الآلي</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>اتأكد إن الشخص 5 قادر يقرا <code>ai_summary</code> من الداتابيز ويعرضه في الـ Dashboard.</span></li>
+        <li><span class="k">🤖</span><span>الـ prompt الخاص بتوليد التقرير النهائي الكامل (Executive Summary وTimeline وIOCs إلخ).</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 6<small>تحسين الجودة</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>حسّن جودة الردود بناءً على ملاحظات الفريق (وضوح، اللغة، تفاصيل ناقصة).</span></li>
+        <li><span class="k">🔧</span><span>لو السيناريو 3 موجود، اختبر الـ prompt عليه.</span></li>
+        <li><span class="k">🔧</span><span>كمّل MITRE mapping وسلّمه للشخص 6 عشان يعمل منه MITRE coverage map.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 7<small>احتياطي للعرض</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>احفظ 2 لـ 3 أمثلة ردود ناجحة كـ backup (نص أو screenshot) لو حصل بطء في الـ LLM وقت العرض.</span></li>
+        <li><span class="k">🔧</span><span>راجع صياغة كل الردود لغويًا قبل الـ Demo.</span></li>
+      </ul></div>
+    </div>
+  </details>
+
+  <!-- ================= PERSON 5 ================= -->
+  <details class="m c5" id="m5">
+    <summary><span class="own o5">5</span> الشخص 5 <span class="en">Streamlit Dashboard + Automation + Reporting</span></summary>
+    <div class="body">
+      <p class="meta"><b>هتسلّم:</b> الـ Dashboard، Approve/Reject، جدول القرارات، زرار التقرير، لوحة المؤشرات. <b>بتستلم من:</b> الشخص 3 (الداتابيز)، الشخص 4 (ai_summary)، الشخص 1 (سكريبت الحظر).</p>
+
+      <div class="wk"><h4>الأسبوع 1<small>أول صفحة</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>ثبّت Python وبعدين <code>pip install streamlit</code>.</span></li>
+        <li><span class="k">🤖</span><span>أول صفحة Streamlit بسيطة (<code>app.py</code>) بتعرض جدول بيانات وهمي.</span></li>
+        <li><span class="k">🔧</span><span>شغّلها بالأمر <code>streamlit run app.py</code> وشوف هل بتفتح في المتصفح صح.</span></li>
+        <li><span class="k">🔧</span><span>ارسم على ورقة (أو Figma/Excalidraw) شكل الـ Dashboard: صفحة رئيسية، صفحة تفاصيل، صفحة موافقة.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 2<small>الربط بالداتابيز</small></h4><ul class="steps">
+        <li><span class="k">🤖</span><span>الكود اللي بيربط Streamlit بقاعدة بيانات SQLite (<code>argus.db</code>) بتاعة الشخص 3.</span></li>
+        <li><span class="k">🔧</span><span>اطلب من الشخص 3 نسخة تجريبية من الداتابيز (أو اشتغل على نفس الملف لو الفريق على نفس الشبكة أو مجلد مشترك مثل GitHub أو Google Drive).</span></li>
+        <li><span class="k">🔧</span><span>شغّل الكود وشوف هل جدول الـ alerts بيظهر صح.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 3<small>صفحة الـ Incidents</small></h4><ul class="steps">
+        <li><span class="k">🤖</span><span>صفحة عرض الـ incidents (مش الـ alerts الخام): كل incident في صف مع الـ risk score وعدد الـ alerts وحالته.</span></li>
+        <li><span class="k">🤖</span><span>صفحة التفاصيل: لما تدوس على incident تشوف كل الـ alerts اللي جواه.</span></li>
+        <li><span class="k">🔧</span><span>اختبر الصفحتين بالبيانات الحقيقية الجاية من الشخص 3.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 4<small>عرض ملخص الـ AI</small></h4><ul class="steps">
+        <li><span class="k">🤖</span><span>عدّل صفحة التفاصيل عشان تعرض عمود <code>ai_summary</code> بتاع الشخص 4 بشكل منظم.</span></li>
+        <li><span class="k">🔧</span><span>اختبر إن كل حاجة بتظهر مع بعض صح (alerts + risk score + AI summary).</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 5 <span class="star">الأهم بالنسبالك</span><small>الموافقة والاستجابة والتقرير</small></h4><ul class="steps">
+        <li><span class="k">🤖</span><span>كود زرار <b>Approve</b> و<b>Reject</b> لكل incident عالي الخطورة.</span></li>
+        <li><span class="k">🤖</span><span>الكود اللي بيربط Approve بسكريبت الحظر بتاع الشخص 1.</span></li>
+        <li><span class="k">🔧</span><span>اختبر: دوس Approve على incident حقيقي وتأكد من الشخص 1 إن الـ IP اتحظر فعلاً.</span></li>
+        <li><span class="k">🤖</span><span>جدول <code>decisions</code> جديد في الداتابيز (incident_id, decision, timestamp) وكود يحفظ القرار فيه.</span></li>
+        <li><span class="k">🤖</span><span>زرار <b>Generate Report</b> بيستدعي الـ prompt بتاع الشخص 4 ويطلع تقرير نصي (Markdown).</span></li>
+        <li><span class="k">🔧</span><span>اختبر الـ flow الكامل من الأول للآخر مرة على الأقل: هجوم ← alert ← incident ← AI summary ← approve ← response ← report.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 6<small>تحسينات</small></h4><ul class="steps">
+        <li><span class="k">🤖</span><span>تحسين بسيط للألوان (أحمر/أصفر/أخضر حسب مستوى الخطورة) في الجدول.</span></li>
+        <li><span class="k">🤖</span><span>(لو الوقت سمح) زرار False Positive / True Positive وكود يحفظ الفيدباك.</span></li>
+        <li><span class="k">🤖</span><span>لوحة مؤشرات: MTTD وMTTR وعدد التنبيهات وأكتر الـ IPs هجومًا وأكتر الأجهزة استهدافًا. الشخص 6 يحدد تعريف كل مؤشر.</span></li>
+        <li><span class="k">🔧</span><span>لو السيناريو 3 موجود، اتأكد إن الـ Dashboard بيعرضه زي الباقي.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 7<small>اختبار وتجهيز</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>اختبر كل زرار وكل مسار في الـ Dashboard بنفسك أكتر من مرة.</span></li>
+        <li><span class="k">🔧</span><span>جهّز إعدادات العرض (resolution، حجم الخط، حجم الشاشة) قبل يوم العرض.</span></li>
+        <li><span class="k">🔧</span><span>اعمل نسخة احتياطية (copy) من ملف <code>argus.db</code> بعد كل اختبار ناجح.</span></li>
+      </ul></div>
+    </div>
+  </details>
+
+  <!-- ================= PERSON 6 ================= -->
+  <details class="m c6" id="m6">
+    <summary><span class="own o6">6</span> الشخص 6 <span class="en">IR / DFIR + Documentation</span></summary>
+    <div class="body">
+      <p class="meta"><b>هتسلّم:</b> الـ GitHub repo، Playbooks، خطط الاحتواء والاسترجاع، الأدلة، Lessons Learned، التقرير النهائي، سلايدات العرض. <b>بتستلم من:</b> الكل (logs وscreenshots وأدلة كل تشغيل).</p>
+
+      <div class="wk"><h4>الأسبوع 1<small>التأسيس</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>اقرا Project 4 وProject 5 في كتيب المبادرة وطلّع قائمة deliverables واحدة. جدول "مطابقة كتيب المبادرة" تحت في الصفحة دي هو أساسها.</span></li>
+        <li><span class="k">🔧</span><span>اعمل GitHub repo واحد للمشروع بمجلدات (<code>docs</code>, <code>rules</code>, <code>attacks</code>, <code>correlation</code>, <code>ai</code>, <code>dashboard</code>, <code>evidence</code>, <code>reports</code>) وادّي صلاحية للـ 6.</span></li>
+        <li><span class="k">🔧</span><span>اتعلّم أساسيات مراحل الـ IR (NIST / SANS): الاستعداد، الكشف والتحليل، الاحتواء والاستئصال والاسترجاع، ما بعد الحادثة.</span></li>
+        <li><span class="k">🤖</span><span>مسودة SIEM Architecture Diagram (Excalidraw أو draw.io) من شكل الـ Lab اللي الشخص 1 بيبنيه.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 2<small>توثيق الـ SIEM</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>اعمل Data Source Inventory: أنهي logs داخلة (Sysmon، auditd، Apache، Wazuh alerts) ومن أنهي جهاز.</span></li>
+        <li><span class="k">🔧</span><span>اعمل جدول Normalized Field Mapping مع الشخص 1: حقول الـ log الخام ← حقول الـ alert اللي بنستخدمها.</span></li>
+        <li><span class="k">🔧</span><span>اكتب Retention Plan: مدة الاحتفاظ بالـ logs والـ alerts والـ incidents وليه.</span></li>
+        <li><span class="k">🔧</span><span>ابدأ مستند Detection Use Cases: لكل rule من الشخص 1 اكتب الغرض ومصدر الـ log والمنطق وـ MITRE ID ونتيجة الاختبار.</span></li>
+        <li><span class="k">🔧</span><span>اعملوا مع الشخص 4 الـ Privacy/Ethics Checklist للـ AI.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 3<small>الـ Playbooks</small></h4><ul class="steps">
+        <li><span class="k">🤖</span><span>SOAR Playbooks: brute force، web attack، malware/IOC (متنفذين في الـ Lab). وكمان phishing وdata exfiltration كتصميم فقط، مش هنختبرهم.</span></li>
+        <li><span class="k">🤖</span><span>Automation Decision Matrix: كل خطوة في كل playbook manual ولا automated وليه. ومعظم قرارات الاستجابة هتفضل بموافقة بشرية.</span></li>
+        <li><span class="k">🔧</span><span>Integration Diagram: إزاي أجزاء المشروع بتتكلم مع بعض (مع الشخص 5).</span></li>
+        <li><span class="k">🔧</span><span>خزّن ملفات الـ PCAP والـ Attack Playbook الجايين من الشخص 2 في مجلد <code>evidence</code>.</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 4<small>خطط الـ IR</small></h4><ul class="steps">
+        <li><span class="k">🤖</span><span>قوالب الـ IR لكل سيناريو: Containment Plan (قصير وطويل المدى)، Eradication Checklist، Recovery Plan.</span></li>
+        <li><span class="k">🔧</span><span>Triage Workflow موحّد: إزاي المحلل بيصنّف alert (true / false positive) وبيقرر التصعيد.</span></li>
+        <li><span class="k">🔧</span><span>مع الشخص 4: هيكل الـ Validation Log (مين بيراجع وبأنهي معيار).</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 5<small>الأدلة والـ Timeline</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>لكل مرة بيتنفّذ فيها سيناريو: احفظ الـ evidence (screenshots + logs + PCAP). احسب SHA-256 للملفات، وسجّل وقت التجميع في نموذج Chain of Custody.</span></li>
+        <li><span class="k">🔧</span><span>ابني Incident Timeline لكل سيناريو من الـ alerts الحقيقية.</span></li>
+        <li><span class="k">🔧</span><span>اكتب 3 Triage Reports على الأقل لـ alerts حقيقية: التصنيف، السياق، الإثراء، توصية التصعيد.</span></li>
+        <li><span class="k">🔧</span><span>مع الشخص 5: تعريفات المؤشرات (MTTD وMTTR وAlert Volume وClosure Rate وTop Attackers وTop Targets).</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 6<small>Lessons Learned</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>اكتب Forensic Evidence Summary: ملخص الأدلة لكل سيناريو.</span></li>
+        <li><span class="k">🔧</span><span>نظّم Mock Lessons-Learned Session بحضور الفريق كله (ساعة): إيه اللي نجح وإيه اللي فشل وإيه التحسينات. وسجّل النتيجة كـ Action Items وUpdated Playbook.</span></li>
+        <li><span class="k">🔧</span><span>MITRE Coverage Map: أنهي techniques بنكشفها وأنهي rule بتغطي كل واحدة (مع الشخص 4 والشخص 1).</span></li>
+      </ul></div>
+
+      <div class="wk"><h4>الأسبوع 7<small>التجميع والعرض</small></h4><ul class="steps">
+        <li><span class="k">🔧</span><span>جمّع كل الوثائق في Final Capstone IR Report (تقني) وExecutive Briefing (صفحة أو اتنين).</span></li>
+        <li><span class="k">🔧</span><span>راجع قائمة الـ deliverables بالكامل: كل بند موجود في الـ repo ولينكه شغّال.</span></li>
+        <li><span class="k">🔧</span><span>جهّز سلايدات العرض مع الفريق وتنسيق مين بيتكلم في إيه.</span></li>
+        <li><span class="k">🔧</span><span>نظّم الـ dry runs (3 مرات على الأقل).</span></li>
+      </ul></div>
+    </div>
+  </details>
+</section>
+
+<section id="booklet">
+  <h2>مطابقة كتيب المبادرة</h2>
+  <p>التقييم النهائي بيعتمد على التزامنا بالـ deliverables وتوزيع المهام. المشروع بيغطي <b>Project 5</b> (AI-Assisted SOC Automation &amp; Full IR Capstone) و<b>Project 4</b> (SIEM Detection Engineering). الجدول ده بيقول كل deliverable مطلوب بيتغطى فين ومين مسؤول عنه.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>الـ Deliverable</th><th>بيتغطى فين</th><th>المسؤول</th><th>الأسبوع</th></tr></thead>
+    <tbody>
+      <tr class="grp"><th colspan="4">Project 5: AI-Assisted SOC Automation &amp; Full IR Capstone</th></tr>
+      <tr><td>AI lab setup guide</td><td>دليل تجهيز Ollama</td><td><span class="own o4">4</span></td><td>1</td></tr>
+      <tr><td>Local model benchmark</td><td>مقارنة الموديلات على نفس الـ incident</td><td><span class="own o4">4</span></td><td>1 لـ 2</td></tr>
+      <tr><td>SOC prompt library</td><td>مكتبة الـ prompts</td><td><span class="own o4">4</span></td><td>2 لـ 4</td></tr>
+      <tr><td>Privacy / ethics checklist</td><td>ليه local LLM وحدود الاعتماد عليه</td><td><span class="own o4">4</span> <span class="own o6">6</span></td><td>2</td></tr>
+      <tr><td>AI accuracy review + hallucination / validation log</td><td>Validation Log: كل ادعاء في رد الـ AI قدّام الدليل</td><td><span class="own o4">4</span> <span class="own o6">6</span></td><td>3 لـ 6</td></tr>
+      <tr><td>AI-assisted log analysis + alert triage summaries</td><td>عمود <code>ai_summary</code> لكل incident</td><td><span class="own o4">4</span></td><td>4 لـ 6</td></tr>
+      <tr><td>Detection improvement notes</td><td>Tuning Notes للـ rules</td><td><span class="own o1">1</span></td><td>4 لـ 6</td></tr>
+      <tr><td>SOAR playbooks + automation decision matrix + manual vs automated steps</td><td>Playbooks للسيناريوهات + مصفوفة القرار (والموافقة البشرية)</td><td><span class="own o6">6</span></td><td>3</td></tr>
+      <tr><td>Integration diagram</td><td>رسمة تربط أجزاء النظام</td><td><span class="own o6">6</span> <span class="own o5">5</span></td><td>3</td></tr>
+      <tr><td>Test results</td><td>جدول الـ rules + تكرار كل سيناريو 3 مرات</td><td><span class="own o1">1</span> <span class="own o2">2</span> <span class="own o5">5</span></td><td>2 لـ 7</td></tr>
+      <tr><td>Incident timeline + forensic evidence summary</td><td>Timeline لكل سيناريو + ملخص الأدلة</td><td><span class="own o6">6</span></td><td>5 لـ 6</td></tr>
+      <tr><td>Containment / eradication / recovery plan</td><td>قوالب الـ IR لكل سيناريو</td><td><span class="own o6">6</span></td><td>4</td></tr>
+      <tr><td>Lessons-learned + updated playbook</td><td>جلسة Lessons Learned</td><td><span class="own o6">6</span></td><td>6</td></tr>
+      <tr><td>AI-assisted reporting workflow</td><td>زرار Generate Report</td><td><span class="own o4">4</span> <span class="own o5">5</span></td><td>5</td></tr>
+      <tr><td>Final Capstone IR Report + executive briefing</td><td>التقرير النهائي وملخص تنفيذي</td><td><span class="own o6">6</span></td><td>7</td></tr>
+
+      <tr class="grp"><th colspan="4">Project 4: SIEM Detection Engineering, Alert Triage &amp; SOC Operations</th></tr>
+      <tr><td>SIEM architecture diagram + data source inventory + normalized field mapping + retention plan</td><td>توثيق الـ Lab والـ logs</td><td><span class="own o6">6</span> <span class="own o1">1</span></td><td>1 لـ 2</td></tr>
+      <tr><td>5 لـ 10 correlation rules + use-case document + tuning notes + test results</td><td>الـ rules + Detection Use Cases</td><td><span class="own o1">1</span> <span class="own o6">6</span></td><td>2 لـ 6</td></tr>
+      <tr><td>SOC dashboard + KPI definitions</td><td>الـ Dashboard ولوحة المؤشرات</td><td><span class="own o5">5</span> <span class="own o6">6</span></td><td>5 لـ 6</td></tr>
+      <tr><td>Triage reports (3 alerts على الأقل)</td><td>Triage Reports من alerts حقيقية</td><td><span class="own o6">6</span></td><td>5</td></tr>
+      <tr><td>Threat intel enrichment report</td><td>تقرير نتايج VirusTotal</td><td><span class="own o3">3</span></td><td>6 لـ 7</td></tr>
+      <tr><td>MITRE coverage map</td><td>خريطة التقنيات المكتشفة</td><td><span class="own o4">4</span> <span class="own o6">6</span></td><td>6</td></tr>
+      <tr><td>AI-assisted triage workflow</td><td>الـ flow بين الـ incident والـ AI والمحلل</td><td><span class="own o4">4</span></td><td>4</td></tr>
+      <tr><td>Final SOC operations report</td><td>جزء من التقرير النهائي</td><td><span class="own o6">6</span></td><td>7</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="rules">
+  <h2>قواعد الشغل</h2>
+  <ul class="plain">
+    <li><b>GitHub:</b> repo واحد للمشروع. كل واحد يرفع شغله باستمرار (على الأقل مرة كل أسبوع). ممنوع نرفع API keys أو باسوردات، الـ keys في <code>.env</code> و<code>.gitignore</code> يمنعه.</li>
+    <li><b>اجتماع أسبوعي 30 دقيقة:</b> كل واحد يعرض اللي شغّال فعلاً، مش اللي عمله بس.</li>
+    <li><b>"خلصت" معناها:</b> شغّال على الجهاز + متجرّب فعلاً + متوثّق.</li>
+    <li><b>Snapshot</b> للـ VMs قبل أي تغيير كبير فيها.</li>
+    <li><b>الـ AI يساعد، مش بيسلّم بدالك:</b> أي حاجة بيكتبها تتجرب فعلاً قبل التسليم (<code>wazuh-logtest</code> للـ rules، وتشغيل الكود). ولو فيه error ابعت الإيرور بالظبط. وكل واحد لازم يفهم اللي سلّمه، لأن اللجنة هتسأل "ليه عملت كده؟" مش بس "عملت إيه؟".</li>
+    <li><b>الأجهزة:</b> الـ Lab لوحده تقيل (Wazuh + Windows + Linux + Kali)، وOllama محتاج رام كمان. فالشخصين 1 و2 يشغّلوا الـ VMs على جهاز (أو اتنين)، والـ AI والـ Dashboard كل واحد يشتغل عليهم على جهازه بنسخ من <code>alerts.json</code> و<code>argus.db</code>. وبنجمّع كله على جهاز واحد في تجارب الدمج ويوم العرض.</li>
+    <li><b>تسليمات المبادرة:</b> الفريق من 4 لـ 6 أفراد (واحنا 6)، وتقسيم المسؤوليات (الجدول اللي فوق) يتسلّم للمدرب في الميعاد، ولينك الـ GitHub يتسلّم، والتقييم على العرض النهائي: الالتزام بالـ deliverables وتوزيع الشغل.</li>
+  </ul>
+</section>
+
+<section id="cut">
+  <h2>لو الوقت ضاق</h2>
+  <p>نقطة القرار في نهاية الأسبوع 5. لو متأخرين، بنقص بالترتيب ده:</p>
+  <ol class="prio">
+    <li>السيناريو 3 وكل اللي مرتبط بيه.</li>
+    <li>زرار False / True Positive وتحسين الألوان.</li>
+    <li>المؤشرات الإضافية في لوحة الـ KPIs.</li>
+    <li>توليد التقرير الآلي (التقرير يتكتب من القوالب اللي عملها الشخص 6).</li>
+  </ol>
+  <div class="ok"><p><b>الحد الأدنى اللي مش بنتنازل عنه:</b> Lab شغّال + السيناريو 1 و2 + الـ rules + الـ correlation + الـ Dashboard + الـ AI summary + Approve والحظر.</p></div>
+  <p>ولو الوضع أسوأ من كده، نقفل عند مستوى Project 4 (Wazuh + rules + dashboard + MITRE + playbooks) ونسلّمه كامل. أحسن من مشروع كبير ناقص.</p>
+</section>
+
+<section id="demo">
+  <h2>العرض النهائي</h2>
+  <ol class="prio">
+    <li>شرح الفكرة والـ architecture: المشكلة ورحلة الحادثة.</li>
+    <li>السيناريو 1 مباشر: هجوم ← alert في Wazuh.</li>
+    <li>الـ Dashboard: الـ incident، الـ risk score وسببه، ملخص الـ AI.</li>
+    <li>Approve ← حظر الـ IP فعلاً ← تقرير.</li>
+    <li>السيناريو 2 (وسيناريو 3 لو اتنفّذ).</li>
+    <li>كل شخص يشرح جزءه في دقيقة أو دقيقتين، ثم أسئلة اللجنة.</li>
+  </ol>
+  <ul class="plain">
+    <li>سجّلوا فيديو لكل سيناريو كـ backup لو الـ VM أو الشبكة وقفت وقت العرض.</li>
+    <li>الأسبوع 7 تجميد: ممنوع أي إضافة جديدة بعد كده.</li>
+    <li>كل واحد يتدرب على "ليه عملت كده" مش بس "عملت إيه".</li>
+  </ul>
+</section>
+
+</main>
+
+<div class="wrap"><footer>ARGUS: دليل الفريق. لو في أي خطوة محتاج كود أو شرح، ابعت للـ AI حالتك الحالية (الكود أو الـ log أو الإيرور بالظبط) وخلّيه يشرحلك.</footer></div>
+
+<script>
+(function(){
+  var all = document.querySelectorAll('details.m');
+  var btn = document.getElementById('toggleAll');
+  var opened = false;
+  btn.addEventListener('click', function(){
+    opened = !opened;
+    for (var i = 0; i < all.length; i++) { all[i].open = opened; }
+    btn.textContent = opened ? 'اقفل كل الخطط' : 'افتح كل الخطط';
+  });
+  window.addEventListener('beforeprint', function(){
+    for (var i = 0; i < all.length; i++) { all[i].open = true; }
+  });
+  // open the plan when someone arrives through a link like #m3
+  function openFromHash(){
+    var id = location.hash.replace('#','');
+    var el = id ? document.getElementById(id) : null;
+    if (el && el.tagName === 'DETAILS') { el.open = true; }
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+})();
+</script>
+</body>
+</html>
